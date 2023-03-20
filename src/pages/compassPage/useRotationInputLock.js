@@ -86,6 +86,11 @@ export const useRotationInputLock = (orientation) => {
     }
 
     if (index === 2) {
+      // Reset lock if somehow skipped first input...
+      if (lockInput[0] === undefined || lockInput[0] === null) {
+        clearLock()
+      }
+
       const timeout = setTimeout(() => {
         setLockInput(prevLockInput => {
           const lockInput = [prevLockInput[0], prevLockInput[1], orientation]
