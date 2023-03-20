@@ -1,14 +1,34 @@
+import { useEffect, useState } from 'react'
 import logo from './logo.svg';
 import './App.css';
 
+import Compass from './pages/compassPage/compass'
+
 function App() {
+  const [position, setPosition] = useState('')
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      setPosition("Geolocation is not supported by this browser.")
+    }
+  }, [])
+ 
+  function showPosition(position) {
+    setPosition("Latitude: " + position.coords.latitude +
+      "<br>Longitude: " + position.coords.longitude)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
-        </p>
+        </p> */}
+        <Compass />
+        {/* <strong >{position}</strong> */}
         <a
           className="App-link"
           href="https://reactjs.org"
