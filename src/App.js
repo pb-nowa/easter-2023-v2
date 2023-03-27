@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import logo from './logo.svg';
 import './App.css';
 
 import Compass from './pages/compassPage/compass'

@@ -1,0 +1,16 @@
+{
+  "name": "easter-2023-ws-server-v2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Preston Nowakowski",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.0",
+    "ws": "^8.11.0"
+  }
+}
