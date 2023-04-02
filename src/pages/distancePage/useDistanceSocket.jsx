@@ -5,7 +5,7 @@ import { BLUE_PAGE } from './distanceBlue'
 
 const useDistanceSocket = (pageName) => {
   // This can also be an async getter function. See notes below on Async Urls.
-  const WS_URL = 'ws://127.0.0.1:8000'
+  const WS_URL = 'ws://2.tcp.ngrok.io:18961' //'ws://127.0.0.1:8000'
   const [redStatus, setRedStatus] = useState('NOT DETECTED')
   const [blueStatus, setBlueStatus] = useState('NOT DETECTED')
   // const WS_URL = 'ws://4.tcp.ngrok.io:11236';

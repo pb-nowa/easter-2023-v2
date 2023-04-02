@@ -1,0 +1,91 @@
+.compass {
+  --background-color: #040828;
+  --blue: #45F1FC;
+  --text: Courier;
+  --opaque: 0.6;
+
+  --font-xs: 16px;
+  --font-sm: 20px;
+  --font-md: 28px;
+  --font-lg: 65px;
+  --font-xl: 100px;
+  
+  font-family: var(--text);
+  font-size: var(--font-md);
+  background-color: var(--background-color);
+  color: var(--blue);
+  height: 91vh;
+  width: 100%;
+  display: grid;
+}
+
+.compass header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 40px 40px 0;
+}
+
+.compass small {
+  font-size: var(--font-xs);
+  text-align: center;
+  margin-top: 40px;
+}
+
+.compass header div {
+  text-align: center;
+}
+
+.compass .body {
+  margin-bottom: 10vh;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.compass .body section {
+ display: grid;
+ grid-template-rows: 1fr 150px auto;
+ width: 100%;
+}
+
+.compass .solution-input {
+  display: grid;
+  font-size: var(--font-lg);
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 45px 68px 1fr;
+  grid-gap: 0 20px;
+}
+
+.compass .solution-input span {
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compass .body .response {
+  font-size: var(--font-md);
+}
+.compass .body strong {
+  font-size: var(--font-xl);
+}
+
+.compass button {
+  background-color: transparent;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  font-size: var(--font-md);
+  font-family: inherit;
+  height: min-content;
+  max-width: 75%;
+  padding: calc(var(--font-md) / 1.5);
+  justify-self: center;
+}
+
