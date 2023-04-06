@@ -1,10 +1,12 @@
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { TICK } from './compass'
+import { useNavigate } from 'react-router-dom'
 
 const LOCK_SOLVE_STATE = [5, 2, 0]
 const LOCK_CLEAR_STATE = [null, null, null]
 
 export const useRotationInputLock = (orientation) => {
+  const navigate = useNavigate()
   const [lockInput, setLockInput] = useState(LOCK_CLEAR_STATE)
   const firstInput = lockInput[0]
 
@@ -25,6 +27,10 @@ export const useRotationInputLock = (orientation) => {
     if (JSON.stringify(combination) === JSON.stringify(LOCK_SOLVE_STATE)) {
       setResponse('Correct Combination!')
 
+
+      setTimeout(() => {
+        navigate('/clue')
+      }, 2000)
       return
     }
 
@@ -34,7 +40,7 @@ export const useRotationInputLock = (orientation) => {
       setResponse('')
       clearLock()
     }, 2000)
-  }, [clearLock])
+  }, [clearLock, navigate])
 
   useEffect(() => {
     // Don't do weird stuff if lock is already solved
@@ -50,13 +56,8 @@ export const useRotationInputLock = (orientation) => {
     const prevOrientation = stackRef.current[stackRef.current.length - 1]
 
     if (index === 0) {
-      // Engage lock stack only after passing 0
-      if (!stackRef.current.length && orientation !== 0) {
-        return
-      }
-
       // Check if switch from Clockwise to Counterclockwise
-      if ((orientation && orientation < prevOrientation) || (orientation === TICK - 1 && prevOrientation === 0)) {
+      if ((orientation < prevOrientation && !(orientation === 0 && prevOrientation === TICK - 1)) || (orientation === TICK - 1 && prevOrientation === 0)) {
         setLockInput([prevOrientation, null, null])
         setIndex(1)
 
@@ -65,7 +66,7 @@ export const useRotationInputLock = (orientation) => {
         return
       }
 
-      stackRef.current.push(orientation)
+      stackRef.current = [...stackRef.current, orientation]
     }
 
     if (index === 1) {
@@ -86,11 +87,11 @@ export const useRotationInputLock = (orientation) => {
         })
         setIndex(2)
         
-        stackRef.current = [orientation]
+        stackRef.current =[orientation]
         return
       }
 
-      stackRef.current.push(orientation)
+      stackRef.current = [...stackRef.current, orientation]
     }
 
     if (index === 2) {
@@ -112,13 +113,13 @@ export const useRotationInputLock = (orientation) => {
         })
       }, 1500)
       
-      stackRef.current.push(orientation)
+      stackRef.current = [...stackRef.current, orientation]
 
       return () => {
         clearTimeout(timeout)
       }
     }
-  }, [orientation, index, firstInput, handleSubmit, clearLock, lockInput])
+  }, [orientation, index, firstInput, handleSubmit, clearLock, lockInput, response])
 
   return { lockInput, clearLock, response }
 }

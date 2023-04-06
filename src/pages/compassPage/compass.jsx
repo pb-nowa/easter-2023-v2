@@ -13,11 +13,11 @@ function Compass() {
 
   const handleOrientation = (e) => {
     // offset from 0 north in degrees
-    const offset = 0
+    const offset = 10
     const max = 360
     const range = max / TICK
     const intValue = Math.floor(e.webkitCompassHeading - offset)
-    const val = Math.floor(intValue / range)
+    const val = Math.floor(((intValue + max) % max) / range)
 
     setOrientation(val)
   }
@@ -34,6 +34,10 @@ function Compass() {
         if (res === 'granted') {
           window.addEventListener("deviceorientation", handleOrientation)
           setIsApproved(true)
+          
+          setTimeout(() => {
+            clearLock()
+          }, 10)
         }
       }).catch(err => {
         console.error(err)
@@ -61,9 +65,9 @@ function Compass() {
                 <span>○</span>
                 <span>□</span>
 
-                <span>{combo[0] || '_'}</span>
-                <span>{combo[1] || '_'}</span>
-                <span>{combo[2] || '_'}</span>
+                <span>{combo[0] ?? '_'}</span>
+                <span>{combo[1] ?? '_'}</span>
+                <span>{combo[2] ?? '_'}</span>
               </div> 
               <div className="center">
                 {response 

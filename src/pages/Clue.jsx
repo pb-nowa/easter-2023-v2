@@ -1,9 +1,13 @@
 import React from 'react'
 
 const Clue = () => {
-    return <div>
-        <img src="https://www.vmcdn.ca/f/files/rwcpulse/images/redwoodcitypulse/stories/4140459965_1b00138ffe_o.jpg" alt="two bridges and a gazebo"></img>
-    </div>
+    return <div style={{
+        background: `url(${"https://raw.githubusercontent.com/pb-nowa/easter-2023-v2/master/public/IMG_3468-min.jpg"})`,
+        height: '100vh',
+        width: '100vw',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat'
+    }} />
 }
 
 export default Clue
