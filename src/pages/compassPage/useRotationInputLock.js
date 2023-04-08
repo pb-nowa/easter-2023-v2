@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import { TICK } from './compass'
 import { useNavigate } from 'react-router-dom'
 
-const LOCK_SOLVE_STATE = [5, 2, 0]
+const LOCK_SOLVE_STATE = [4, 1, 7]
 const LOCK_CLEAR_STATE = [null, null, null]
 
 export const useRotationInputLock = (orientation) => {
